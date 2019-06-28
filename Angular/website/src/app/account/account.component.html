@@ -1,0 +1,71 @@
+<div class="container mt-5">
+    <div class="row d-block text-center">
+        <h1 class="display-4">Hi {{ firstname }}!</h1>
+        <p>Welcome to your account.</p>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
+            <h3>BILLING ADDRESS</h3>
+            
+                <ul class="list-group">
+                    <li class="list-group-item"><span class="font-weight-light">Name: </span>{{ firstname }}  {{ lastname }}</li>
+                    <li class="list-group-item"><span class="font-weight-light">Address: </span>{{ addressline }}</li>
+                    <li class="list-group-item"><span class="font-weight-light">Zip Code: </span>{{ zipcode }}</li>
+                    <li class="list-group-item"><span class="font-weight-light">City: </span>{{ city }}</li>
+                    <li class="list-group-item"><span class="font-weight-light">Date of Birth: </span>{{ dateofbirth }}</li>
+                    <li class="list-group-item"><span class="font-weight-light">Email: </span>{{ email }}</li>
+                    <li class="list-group-item"><a routerLink="/update" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact: true}" class="btn btn-dark btn-block">Edit account</a>
+                    </li>
+                    <li class="list-group-item"><button class="btn btn-dark btn-block" (click)="delete()">Delete
+                            account</button></li>
+                    <li class="list-group-item"><button class="btn btn-dark btn-block"
+                            (click)="logout()">Logout</button>
+                    </li>
+                </ul>
+            
+        </div>
+        <div class="col-md-4">
+            <h3>DELIVERY ADDRESS</h3>
+            <form [formGroup]="deliveryAddressForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <input type="text" formControlName="delivery_addressline" class="form-control" placeholder="Address"
+                            [ngClass]="{ 'is-invalid': submitted && formControls.delivery_addressline.errors }" />
+                        <div *ngIf="submitted && formControls.delivery_addressline.errors" class="invalid-feedback">
+                            <div *ngIf="formControls.delivery_addressline.errors.required">Address is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" formControlName="delivery_zipcode" class="form-control" placeholder="Zip Code"
+                            [ngClass]="{ 'is-invalid': submitted && formControls.delivery_zipcode.errors }" />
+                        <div *ngIf="submitted && formControls.delivery_zipcode.errors" class="invalid-feedback">
+                            <div *ngIf="formControls.delivery_zipcode.errors.required">Zip Code is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" formControlName="delivery_city" class="form-control" placeholder="City"
+                            [ngClass]="{ 'is-invalid': submitted && formControls.delivery_city.errors }" />
+                        <div *ngIf="submitted && formControls.delivery_city.errors" class="invalid-feedback">
+                            <div *ngIf="formControls.delivery_city.errors.required">City is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" formControlName="delivery_country" class="form-control" placeholder="Country"
+                            [ngClass]="{ 'is-invalid': submitted && formControls.delivery_country.errors }" />
+                        <div *ngIf="submitted && formControls.delivery_country.errors" class="invalid-feedback">
+                            <div *ngIf="formControls.delivery_country.errors.required">country is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="loading" type="submit" class="btn btn-dark">Save</button>
+                        <img *ngIf="loading" class="pl-3"
+                          src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                      </div>
+            </form>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck1" (change)="setValue($event)">
+                <label class="custom-control-label" for="customCheck1">Billing address same as delivery address</label>
+            </div>
+        </div>
+    </div>
+</div>

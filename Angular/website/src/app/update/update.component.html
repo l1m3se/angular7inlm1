@@ -1,0 +1,64 @@
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center"><h1 class="display-4">UPDATE</h1></div>
+      <div class="row mt-5 justify-content-center">
+        <div class="col-md-4">
+          <h3>User details</h3>
+          <form class="" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <input type="text" formControlName="firstname" class="form-control" placeholder="First name"
+                  [ngClass]="{ 'is-invalid': submitted && formControls.firstname.errors }" />
+                <div *ngIf="submitted && formControls.firstname.errors" class="invalid-feedback">
+                  <div *ngIf="formControls.firstname.errors.required">First name is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" formControlName="lastname" class="form-control" placeholder="Last name"
+                  [ngClass]="{ 'is-invalid': submitted && formControls.lastname.errors }" />
+                <div *ngIf="submitted && formControls.lastname.errors" class="invalid-feedback">
+                  <div *ngIf="formControls.lastname.errors.required">Last name is required</div>
+                </div>
+              </div>
+            <div class="form-group">
+              <input type="text" formControlName="addressline" class="form-control" placeholder="Address"
+                [ngClass]="{ 'is-invalid': submitted && formControls.addressline.errors }" />
+              <div *ngIf="submitted && formControls.addressline.errors" class="invalid-feedback">
+                <div *ngIf="formControls.addressline.errors.required">Address is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" formControlName="zipcode" class="form-control" placeholder="Zip Code"
+                [ngClass]="{ 'is-invalid': submitted && formControls.zipcode.errors }" />
+              <div *ngIf="submitted && formControls.zipcode.errors" class="invalid-feedback">
+                <div *ngIf="formControls.zipcode.errors.required">Zip Code is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" formControlName="city" class="form-control" placeholder="City"
+                [ngClass]="{ 'is-invalid': submitted && formControls.city.errors }" />
+              <div *ngIf="submitted && formControls.city.errors" class="invalid-feedback">
+                <div *ngIf="formControls.city.errors.required">City is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="date" formControlName="dateofbirth" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formControls.dateofbirth.errors }" />
+              <div *ngIf="submitted && formControls.dateofbirth.errors" class="invalid-feedback">
+                <div *ngIf="formControls.dateofbirth.errors.required">Date of birth is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button [disabled]="loading" type="submit" class="btn btn-dark">Update User Details</button>
+              <img *ngIf="loading" class="pl-3"
+                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              <a routerLink="/account" class="btn btn-outline-dark ml-2">Cancel</a>
+            </div>
+          </form>
+        </div>
+        <!-- UPDATE PASSWORD -->
+        <div class="col-md-4">
+          <h3>Account details</h3>
+          <app-update-email></app-update-email>
+          <app-update-password></app-update-password>
+      </div>
+      </div>
+    </div>
